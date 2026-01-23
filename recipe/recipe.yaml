@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pytokens
-  version: 0.3.0
+  version: "0.4.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,24 +10,31 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pytokens-${{ version }}.tar.gz
-  sha256: 2f932b14ed08de5fcf0b391ace2642f858f1394c0857202959000b68ed7a458a
+  sha256: 6b0b03e6ea7c9f9d47c5c61164b69ad30f4f0d70a5d9fe7eac4d19f24f77af2d
 
 build:
   number: 0
-  noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler('c') }}
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - mypy
   host:
-    - python ${{ python_min }}.*
+    - python
     - pip
     - setuptools
+    - mypy
   run:
-    - python >=${{ python_min }}
+    - python
 
 tests:
   - python:
-      python_version: ${{ python_min }}.*
       imports:
         - pytokens
       pip_check: true
