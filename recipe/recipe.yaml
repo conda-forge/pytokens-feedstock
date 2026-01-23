@@ -24,12 +24,12 @@ requirements:
       then:
         - python
         - cross-python_${{ target_platform }}
-        - mypyc
+        - mypy
   host:
     - python
     - pip
     - setuptools
-    - mypyc
+    - mypy
   run:
     - python
 
