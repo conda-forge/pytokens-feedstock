@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pytokens
-  version: "0.4.0"
+  version: "0.4.1"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pytokens-${{ version }}.tar.gz
-  sha256: 6b0b03e6ea7c9f9d47c5c61164b69ad30f4f0d70a5d9fe7eac4d19f24f77af2d
+  sha256: 292052fe80923aae2260c073f822ceba21f3872ced9a68bb7953b348e561179a
 
 build:
   number: 0
